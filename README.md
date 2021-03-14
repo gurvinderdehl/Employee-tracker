@@ -19,7 +19,7 @@ This main aim of this project was to create a CLI application, which allowed you
 change the credentials in the connection in index.js to your own, then run schema.sql in your SQL workbench to create the database
 run seed.sql to use provided data
 ## Usage Information
-* * To use the application run node index.js or npm start.
+*  To use the application run node index.js or npm start.
 ## Contributors
 * There are no Contributors for this Project.
 ## Instructions
