@@ -73,3 +73,43 @@ launchMenu = () => {
             }
         )
     };
+
+
+    addEmployee = () => {
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'firstName',
+                message: 'Please enter their first name'
+            }, {
+                type: 'input',
+                name: 'lastName',
+                message: 'Please enter their last name'
+            }, {
+                type: 'list',
+                name: 'roleChoice',
+                message: 'Please select their role',
+                choices: selectRole()
+            }, {
+                type: 'list',
+                name: 'managerChoice',
+                message: 'Do they have a manager?',
+                choices: ['Yes', 'No']
+            }
+        ]).then((data) => {
+            if (data.managerChoice == 'Yes') {
+                selectManager(data);
+            } else {
+                const roleId = data.roleChoice;
+                connection.query('INSERT INTO employee SET ?', {
+                    first_name: data.firstName,
+                    last_name: data.lastName,
+                    role_id: roleId,
+                    manager_id: null
+                }, (err, res) => {
+                    viewAllEmployees();
+                    if (err) throw err;
+                });
+            }
+        })
+    };
