@@ -66,7 +66,7 @@ launchMenu = () => {
                 updateEmployeeRole();
                 break;
             case 'Exit':
-                endSession();
+                closeSession();
                 break;
         }
     });
