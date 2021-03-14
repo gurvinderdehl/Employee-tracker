@@ -50,3 +50,14 @@ launchMenu = () => {
             }
         )
     };
+    viewEmployeeRoles = () => {
+        // console.log('view roles');
+        connection.query(
+            "SELECT employee.first_name, employee.last_name, role.title AS role FROM employee JOIN role ON employee.role_id = role.id;",
+            (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                launchMenu();
+            }
+        )
+    };
