@@ -38,3 +38,15 @@ launchMenu = () => {
             ]
         }
     )
+
+    viewAllEmployees = () => {
+       
+        connection.query(
+            "SELECT employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(m.first_name, ' ', m.last_name) AS manager FROM employee INNER JOIN role ON role.id = employee.role_id INNER JOIN department ON department.id = role.department_id LEFT JOIN employee m ON employee.manager_id = m.id;",
+            (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                launchMenu();
+            }
+        )
+    };
