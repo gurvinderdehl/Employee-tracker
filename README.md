@@ -24,7 +24,7 @@ run seed.sql to use provided data
 * There are no Contributors for this Project.
 ## Instructions
 * Instructions will be shown below in a video :
-<img src="" alt=""/>
+<img src="" alt="Employee Tracker"/>
 
 ## License
 * licensed under the [MIT License](LICENSE)
