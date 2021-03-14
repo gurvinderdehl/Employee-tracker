@@ -33,5 +33,5 @@ run seed.sql to use provided data
 * Follow me on Github at [gurvinderdehl](http://github.com/gurvinderdehl)
 
 ## URLs 
-* The URL of the GitHub repository: 
+* The URL of the GitHub repository: https://github.com/gurvinderdehl/Employee-tracker
 * The Link to the video demonstration:
