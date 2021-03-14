@@ -202,4 +202,25 @@ launchMenu = () => {
             }
         )
     };
-    
+    addDept = () => {
+        // console.log('add dept');
+        inquirer.prompt(
+            {
+                type: 'input',
+                name: 'dept',
+                message: 'What is the new department?'
+            }
+        ).then((data) => {
+            connection.query(
+                'INSERT INTO department SET ?',
+                {
+                    name: data.dept,
+                }, (err, res) => {
+                    // console.log(res);
+                    // console.table(data);
+                    launchMenu();
+                    if (err) throw err;
+                }
+            )
+        })
+    };
