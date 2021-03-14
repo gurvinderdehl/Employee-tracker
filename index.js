@@ -30,7 +30,7 @@ launchMenu = () => {
         {
             type: 'list',
             name: 'menuChoice',
-            message: 'Welcome to the Employee Tracker! What would you like to do?',
+            message: 'Welcome my Employee Tracker! What would you like to do?',
             choices: [
                 'View ALL employees',
                 'View employees by ROLE',
