@@ -61,3 +61,15 @@ launchMenu = () => {
             }
         )
     };
+
+    viewEmployeeDept = () => {
+        // console.log('view dept');
+        connection.query(
+            "SELECT employee.first_name, employee.last_name, department.name AS department FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id ORDER BY employee.id;",
+            (err, res) => {
+                if (err) throw err;
+                console.table(res);
+                launchMenu();
+            }
+        )
+    };
