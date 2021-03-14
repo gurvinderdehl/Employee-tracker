@@ -34,4 +34,4 @@ run seed.sql to use provided data
 
 ## URLs 
 * The URL of the GitHub repository: https://github.com/gurvinderdehl/Employee-tracker
-* The Link to the video demonstration: https://drive.google.com/file/d/1bGWJRoDrgBHds2TD1W4ArDoAwoBfCMlV/view?usp=sharing 
+* The Link to the video demonstration: https://drive.google.com/file/d/1bGWJRoDrgBHds2TD1W4ArDoAwoBfCMlV/view?usp=sharing
