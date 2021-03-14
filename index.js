@@ -18,3 +18,23 @@ connection.connect((err) => {
   
     
 });
+
+
+launchMenu = () => {
+    inquirer.prompt(
+        {
+            type: 'list',
+            name: 'menuChoice',
+            message: 'This is my Employee Tracker! What would you like to do?',
+            choices: [
+                'View ALL employees',
+                'View employees by ROLE',
+                'View employees by DEPARTMENT',
+                'ADD employee',
+                'ADD role',
+                'ADD department',
+                'UPDATE employee role',
+                'Exit'
+            ]
+        }
+    )
