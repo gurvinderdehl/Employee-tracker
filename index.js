@@ -113,3 +113,93 @@ launchMenu = () => {
             }
         })
     };
+
+    selectRole = () => {
+        connection.query(
+            'SELECT * FROM role',
+            (err, res) => {
+                if (err) throw err;
+                for (let i = 0; i < res.length; i++) {
+                    let newEmpRole = { name: res[i].title, value: res[i].id };
+                    roleArr.push(newEmpRole)
+                }
+            }
+        )
+        return roleArr;
+    }
+
+    selectManager = (data) => {
+        connection.query(
+            'SELECT first_name, last_name, id FROM employee WHERE manager_id IS NULL;',
+            (err, res) => {
+                if (err) throw err;
+                for (let i = 0; i < res.length; i++) {
+                    let managerName = { name: `${res[i].first_name} ${res[i].last_name}`, value: res[i].id };
+                    managerArr.push(managerName)
+                }
+                inquirer.prompt({
+                    type: 'list',
+                    name: 'manager',
+                    message: 'Please enter their manager',
+                    choices: managerArr
+                }).then((response) => {
+                    const roleId = data.roleChoice
+                    // console.log(roleId);
+                    // console.log(response.manager);
+                    const managerId = response.manager; 
+                    connection.query('INSERT INTO employee SET ?', {
+                        first_name: data.firstName,
+                        last_name: data.lastName,
+                        role_id: roleId,
+                        manager_id: managerId
+                    }, (err, res) => {
+                        // console.table(data)
+                        viewAllEmployees();
+                        if (err) throw err;
+                    });
+                })
+            }
+        )
+    }
+
+    addRole = () => {
+        connection.query(
+            'SELECT * FROM department',
+            (err, res) => {
+                if (err) throw err;
+                for (let i = 0; i < res.length; i++) {
+                    deptArr.push({ name: res[i].name, value: res[i].id });
+                }
+                inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'roleTitle',
+                        message: 'What is the new role title?'
+                    }, {
+                        type: 'input',
+                        name: 'roleSalary',
+                        message: 'What is the new role salary'
+                    }, {
+                        type: 'list',
+                        name: 'roleDept',
+                        message: 'What department does the new role fall under?',
+                        choices: deptArr
+                    }
+                ]).then((data) => {
+                    connection.query(
+                        'INSERT INTO role SET ?',
+                        {
+                            title: data.roleTitle,
+                            salary: data.roleSalary,
+                            department_id: data.roleDept
+                        },
+                        (err, res) => {
+                            launchMenu();
+                            if (err) throw err;
+                        }
+                    )
+                })
+            }
+        )
+    };
+    
